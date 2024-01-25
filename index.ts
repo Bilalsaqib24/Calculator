@@ -1,8 +1,7 @@
+#!/usr/bin/env node
 import inquirer from "inquirer";
 import chalk from 'chalk';
 import { addition, subtraction, multiplication, division, operations } from "./operations.js";
-
-    let result;
     let message = 
         [
             {
@@ -38,32 +37,36 @@ import { addition, subtraction, multiplication, division, operations } from "./o
             },
         ];
 
-    let condition = true;
-    while (condition) {
-        let {firstNumber, secondNumber, operation} = await inquirer.prompt(message);
-        switch (operation) {
-            case 'Addition':
-                result = addition(firstNumber, secondNumber);
-                break;
-            case 'Subtraction':
-                result = subtraction(firstNumber, secondNumber);
-                break;
-            case 'Multiplication':
-                result = multiplication(firstNumber, secondNumber);
-                break;
-            case 'Division':
-                if (secondNumber !== 0) {
-                result = division(firstNumber, secondNumber);
-                } else {
-                console.log('Error: Cannot divide by zero.');
-                }
-                break;
+  async function calculator() {
+        let condition = true;
+        let result;
+        while (condition) {
+            let {firstNumber, secondNumber, operation} = await inquirer.prompt(message);
+            switch (operation) {
+                case 'Addition':
+                    result = addition(firstNumber, secondNumber);
+                    break;
+                case 'Subtraction':
+                    result = subtraction(firstNumber, secondNumber);
+                    break;
+                case 'Multiplication':
+                    result = multiplication(firstNumber, secondNumber);
+                    break;
+                case 'Division':
+                    if (secondNumber !== 0) {
+                    result = division(firstNumber, secondNumber);
+                    } else {
+                    console.log('Error: Cannot divide by zero.');
+                    }
+                    break;
+            }
+            console.log(`> ` + chalk.bgGreen.bold(`${operation} of ${firstNumber} and ${secondNumber} is:`) + ` ${result}`);
+            let {yesNo} = await inquirer.prompt(confirmation);
+            condition = yesNo;
         }
-        console.log(`> ` + chalk.bgGreen.bold(`${operation} of ${firstNumber} and ${secondNumber} is:`) + ` ${result}`);
-        let {yesNo} = await inquirer.prompt(confirmation);
-        condition = yesNo;
+        console.log("\n");
+        console.log(chalk.bgMagenta.bold.underline("*** Thanks for using our mini calculator - Adam's Tech ***"));
     }
-    console.log("\n \n");
-    console.log(chalk.bgMagenta.bold.underline("*** Thanks for using our mini calculator - Adam'sTech ***"));
+    calculator();
     
 

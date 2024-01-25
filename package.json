@@ -1,6 +1,6 @@
 {
-  "name": "calculator",
-  "version": "1.0.0",
+  "name": "cl-calculator",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -8,12 +8,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bilal Saqib",
   "license": "ISC",
   "dependencies": {
     "@types/inquirer": "^9.0.7",
     "chalk": "^5.3.0",
     "d": "^1.0.1",
     "inquirer": "^9.2.12"
-  }
+  },
+  "bin": "./index.js"
 }
